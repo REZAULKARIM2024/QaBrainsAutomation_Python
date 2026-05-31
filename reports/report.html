@@ -1,0 +1,227 @@
+Feature: Cart Functionality # features/CartCheckout.feature:1
+  As a user
+  I want to manage products in the cart
+  So that I can complete my purchase smoothly
+  Feature: Cart Functionality  # features/CartCheckout.feature:1
+
+  @smoke @regression
+  Scenario: Add product to cart         # features/CartCheckout.feature:10
+    Given User launches the application # features/steps/common_steps.py:13
+    When User adds products to cart     # features/steps/cart_steps.py:13
+      Traceback (most recent call last):
+        File "/Users/ranajitchowdhury/Library/Python/3.9/lib/python/site-packages/behave/model.py", line 1991, in run
+          match.run(runner.context)
+        File "/Users/ranajitchowdhury/Library/Python/3.9/lib/python/site-packages/behave/matchers.py", line 105, in run
+          self.func(context, *args, **kwargs)
+        File "features/steps/cart_steps.py", line 15, in user_adds_products_to_cart
+          _cart_page(context).add_product_to_cart(0)
+        File "/Users/ranajitchowdhury/Visual_Studio_Workspace/qaBrainsAutomation_Python/features/../pages/cart_page.py", line 87, in add_product_to_cart
+          raise RuntimeError(
+      RuntimeError: ❌ No 'Add to Cart' button found at index 0. URL was: https://practice.qabrains.com/catalog. See debug output above.
+
+    Then Product should appear in cart  # None
+----
+CAPTURED STDOUT: scenario
+❌ Could not find 'Add to Cart' button. All buttons on page:
+---- CAPTURED_SCENARIO_OUTPUT_END ----
+
+  @smoke @regression
+  Scenario: Remove product from cart    # features/CartCheckout.feature:15
+    Given User launches the application # features/steps/common_steps.py:13
+    When User adds products to cart     # features/steps/cart_steps.py:13
+      Traceback (most recent call last):
+        File "/Users/ranajitchowdhury/Library/Python/3.9/lib/python/site-packages/behave/model.py", line 1991, in run
+          match.run(runner.context)
+        File "/Users/ranajitchowdhury/Library/Python/3.9/lib/python/site-packages/behave/matchers.py", line 105, in run
+          self.func(context, *args, **kwargs)
+        File "features/steps/cart_steps.py", line 15, in user_adds_products_to_cart
+          _cart_page(context).add_product_to_cart(0)
+        File "/Users/ranajitchowdhury/Visual_Studio_Workspace/qaBrainsAutomation_Python/features/../pages/cart_page.py", line 87, in add_product_to_cart
+          raise RuntimeError(
+      RuntimeError: ❌ No 'Add to Cart' button found at index 0. URL was: https://practice.qabrains.com/catalog. See debug output above.
+
+    And User removes product from cart  # None
+    Then Cart should be empty           # None
+----
+CAPTURED STDOUT: scenario
+❌ Could not find 'Add to Cart' button. All buttons on page:
+---- CAPTURED_SCENARIO_OUTPUT_END ----
+
+Feature: Forgot Password functionality # features/ForgotPassword.feature:1
+  As a user
+  I want to reset my password
+  So that I can regain access to my account
+  @smoke @regression @ForgotPassword
+  Scenario: Registered user can reset password                         # features/ForgotPassword.feature:7
+    Given User is on Forgot Password page                              # features/steps/forgot_password_steps.py:13
+    When User enters registered email "chyranajit@gmail.com"           # features/steps/forgot_password_steps.py:19
+    And User clicks on Submit button                                   # features/steps/forgot_password_steps.py:29
+    Then User should see success message "Password reset successfully" # features/steps/forgot_password_steps.py:34
+
+  @regression @ForgotPassword
+  Scenario: Unregistered user cannot reset password                         # features/ForgotPassword.feature:14
+    Given User is on Forgot Password page                                   # features/steps/forgot_password_steps.py:13
+    When User enters unregistered email "chyranajitgmail.com"               # features/steps/forgot_password_steps.py:24
+    And User clicks on Submit button                                        # features/steps/forgot_password_steps.py:29
+    Then User should see error message "Please enter a valid email address" # features/steps/forgot_password_steps.py:41
+
+Feature: Login Functionality # features/Login.feature:1
+  As a user
+  I want to login to the application
+  So that I can access my account
+  Feature: Login Functionality  # features/Login.feature:1
+
+  @smoke @regression @Login
+  Scenario: Login with valid credentials         # features/Login.feature:10
+    Given User launches the application          # features/steps/common_steps.py:13
+    When User enters valid username and password # features/steps/login_steps.py:13
+    Then User should be logged in successfully   # features/steps/login_steps.py:23
+
+  @regression @Login
+  Scenario: Login with invalid credentials         # features/Login.feature:15
+    Given User launches the application            # features/steps/common_steps.py:13
+    When User enters invalid username and password # features/steps/login_steps.py:18
+    Then Error message should be displayed         # features/steps/login_steps.py:28
+
+Feature: Logout Functionality # features/Logout.feature:1
+  As a logged-in user
+  I want to logout from the application
+  So that my session is securely closed
+  Feature: Logout Functionality  # features/Logout.feature:1
+
+  @smoke @regression @Logout
+  Scenario: Logged in user should be able to logout  # features/Logout.feature:11
+    Given User launches the application              # features/steps/common_steps.py:13
+    And User is logged in                            # features/steps/logout_steps.py:16
+    When User clicks on logout button                # features/steps/logout_steps.py:23
+      Traceback (most recent call last):
+        File "/Users/ranajitchowdhury/Library/Python/3.9/lib/python/site-packages/behave/model.py", line 1991, in run
+          match.run(runner.context)
+        File "/Users/ranajitchowdhury/Library/Python/3.9/lib/python/site-packages/behave/matchers.py", line 105, in run
+          self.func(context, *args, **kwargs)
+        File "features/steps/logout_steps.py", line 26, in logout
+          context.logout_page.click_logout()
+        File "/Users/ranajitchowdhury/Visual_Studio_Workspace/qaBrainsAutomation_Python/features/../pages/logout_page.py", line 80, in click_logout
+          raise RuntimeError("❌ Logout button not found. Check debug output above for available links.")
+      RuntimeError: ❌ Logout button not found. Check debug output above for available links.
+
+    Then User should be logged out successfully      # None
+----
+CAPTURED STDOUT: scenario
+Login URL check: https://practice.qabrains.com/ → PASSED
+❌ Logout button not found. All links/buttons on page:
+   text='(Practice Site)' href='/' class='inline-flex items-end gap-1'
+   text='Home' href='/' class='inline-block'
+   text='QA Topics' href='https://qabrains.com/topics' class='inline-block'
+   text='Discussion' href='https://qabrains.com/discussion' class='inline-block'
+   text='Tags' href='https://qabrains.com/tags' class='inline-block'
+   text='Jobs' href='https://qabrains.com/jobs' class='inline-block'
+   text='Practice Site' href='https://qabrains.com/practice-site' class='inline-block'
+   text='About Us' href='https://qabrains.com/about' class='inline-block'
+   text='Sign In' href='https://qabrains.com/auth/login' class='bg-qa-clr rounded-4xl px-4 sm:px-7 py-2 text-white'
+   text='Login' href='' class='btn-submit uppercase flex items-center gap-2 justi'
+   text='Submit' href='' class='inline-flex items-center justify-center gap-2 whit'
+   text='' href='https://qabrains.com' class='inline-block mb-5 text-white no-underline'
+   text='Web Testing' href='https://qabrains.com/topics/web-testing' class='hover:underline text-gray-300'
+   text='Interview Questions' href='https://qabrains.com/topics/interview-questions' class='hover:underline text-gray-300'
+   text='Testing Framework' href='https://qabrains.com/topics/testing-framework' class='hover:underline text-gray-300'
+   text='See more' href='https://qabrains.com/topics' class='hover:underline flex items-center justify-center l'
+   text='Discussion' href='https://qabrains.com/discussion' class='hover:underline text-gray-300'
+   text='About Us' href='https://qabrains.com/about' class='hover:underline text-gray-300'
+   text='Terms & Conditions' href='https://qabrains.com/terms' class='hover:underline text-gray-300'
+   text='Privacy Policy' href='https://qabrains.com/policy' class='hover:underline text-gray-300'
+   text='' href='https://www.linkedin.com/showcase/qabrainscom' class='inline-block hover:opacity-80'
+   text='' href='https://www.facebook.com/qabrainscom' class='inline-block hover:opacity-80'
+   text='' href='https://www.youtube.com/@QABrains' class='inline-block hover:opacity-80'
+   text='support@qabrains.com' href='mailto:support@qabrains.com' class='text-white border-b border-white hover:text-white'
+---- CAPTURED_SCENARIO_OUTPUT_END ----
+
+Feature: User Registration # features/Registration.feature:1
+  As a new user
+  I want to register an account
+  So that I can access the application
+  Feature: User Registration  # features/Registration.feature:1
+
+  @smoke @regression @Registration
+  Scenario: Successful user registration with valid email                        # features/Registration.feature:11
+    Given User launches the application                                          # features/steps/common_steps.py:13
+    And User is on homepage                                                      # features/steps/common_steps.py:26
+    When User navigates to registration page                                     # features/steps/registration_steps.py:13
+    And User enters valid registration details with email "chyranajit@gmail.com" # features/steps/registration_steps.py:18
+    And User clicks on register button                                           # features/steps/registration_steps.py:34
+    Then User should be registered successfully                                  # features/steps/registration_steps.py:39
+      ASSERT FAILED: ❌ Registration failed!
+
+----
+CAPTURED STDOUT: scenario
+⚠ No success message found. URL: https://practice.qabrains.com/registration
+Page body snippet: #nprogress{pointer-events:none}#nprogress .bar{background:#091dbd;position:fixed;z-index:1600;top: 0;left:0;width:100%;height:2px}#nprogress .peg{display:block;position:absolute;right:0;width:100px;height:100%;box-shadow:0 0 10px #091dbd,0 0 5px #091dbd;opacity:1;-webkit-transform:rotate(3deg) trans
+---- CAPTURED_SCENARIO_OUTPUT_END ----
+
+  @regression @Registration
+  Scenario: Registration should fail with invalid email                   # features/Registration.feature:18
+    Given User launches the application                                   # features/steps/common_steps.py:13
+    And User is on homepage                                               # features/steps/common_steps.py:26
+    When User navigates to registration page                              # features/steps/registration_steps.py:13
+    And User enters registration details with email "chyranajitgmail.com" # features/steps/registration_steps.py:26
+    And User clicks on register button                                    # features/steps/registration_steps.py:34
+    Then Email validation error message should be displayed               # features/steps/registration_steps.py:44
+
+Feature: Regression Test Suite # features/RegressionTests.feature:1
+  As a QA team
+  We want to verify core functionalities
+  So that the system remains stable after changes
+  @regression
+  Scenario: R-01 Add multiple products to cart  # features/RegressionTests.feature:7
+    Given User launches the application         # features/steps/common_steps.py:13
+    When User adds products to cart             # features/steps/cart_steps.py:13
+      Traceback (most recent call last):
+        File "/Users/ranajitchowdhury/Library/Python/3.9/lib/python/site-packages/behave/model.py", line 1991, in run
+          match.run(runner.context)
+        File "/Users/ranajitchowdhury/Library/Python/3.9/lib/python/site-packages/behave/matchers.py", line 105, in run
+          self.func(context, *args, **kwargs)
+        File "features/steps/cart_steps.py", line 15, in user_adds_products_to_cart
+          _cart_page(context).add_product_to_cart(0)
+        File "/Users/ranajitchowdhury/Visual_Studio_Workspace/qaBrainsAutomation_Python/features/../pages/cart_page.py", line 87, in add_product_to_cart
+          raise RuntimeError(
+      RuntimeError: ❌ No 'Add to Cart' button found at index 0. URL was: https://practice.qabrains.com/catalog. See debug output above.
+
+    Then Products should be added successfully  # None
+----
+CAPTURED STDOUT: scenario
+❌ Could not find 'Add to Cart' button. All buttons on page:
+---- CAPTURED_SCENARIO_OUTPUT_END ----
+
+  @regression
+  Scenario: R-02 Update product quantity  # features/RegressionTests.feature:13
+    Given User launches the application   # features/steps/common_steps.py:13
+    When User updates product quantity    # features/steps/regression_steps.py:18
+    Then Quantity should be updated       # features/steps/regression_steps.py:36
+
+  @regression
+  Scenario: R-03 Search invalid item    # features/RegressionTests.feature:19
+    Given User launches the application # features/steps/common_steps.py:13
+    When User searches for invalid item # features/steps/regression_steps.py:25
+    Then No result should be displayed  # features/steps/regression_steps.py:30
+
+Feature: Smoke Test Suite # features/SmokeTests.feature:1
+  As a QA team
+  We want to verify critical application flows
+  So that we can ensure the build is stable
+  @smoke
+  Scenario: S-01 Verify Home page loads     # features/SmokeTests.feature:7
+    Given User launches the application     # features/steps/common_steps.py:13
+    Then Home page should load successfully # features/steps/common_steps.py:19
+
+  @smoke
+  Scenario: S-02 Verify navigation links        # features/SmokeTests.feature:12
+    Given User launches the application         # features/steps/common_steps.py:13
+    When User clicks on Catalog, About and Blog # features/steps/smoke_steps.py:45
+    Then Pages should navigate correctly        # features/steps/smoke_steps.py:53
+
+  @smoke
+  Scenario: S-03 Verify wishlist and refer a friend functionality  # features/SmokeTests.feature:18
+    Given User launches the application                            # features/steps/common_steps.py:13
+    When User clicks on Wish list and Refer a Friend               # features/steps/smoke_steps.py:59
+    Then Pages should open successfully                            # features/steps/smoke_steps.py:66
+

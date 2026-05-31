@@ -1,0 +1,67 @@
+USING RUNNER: behave.runner:Runner
+ℹ️  Logging in to access products...
+ℹ️  Attempting login with: qa_testers@qabrains.com
+    Current URL: https://practice.qabrains.com/
+    Filled email='qa_testers@qabrains.com' and password
+    Clicking login button...
+    Post-login URL: https://practice.qabrains.com/?logged=true
+ℹ️  On product page: https://practice.qabrains.com/?logged=true
+✅ Add to Cart button via 'button:has-text('Submit')' index=0: 'submit'
+ℹ️  Logging in to access products...
+ℹ️  Attempting login with: qa_testers@qabrains.com
+    Current URL: https://practice.qabrains.com/
+    Filled email='qa_testers@qabrains.com' and password
+    Clicking login button...
+    Post-login URL: https://practice.qabrains.com/?logged=true
+ℹ️  On product page: https://practice.qabrains.com/?logged=true
+✅ Add to Cart button via 'button:has-text('Submit')' index=0: 'submit'
+✅ ForgotPassword success msg [text=/reset/i]: Reset Password
+✅ Found error keyword in page body
+ℹ️  Attempting login with: wrong@test.com
+    Current URL: https://practice.qabrains.com/
+    Filled email='wrong@test.com' and password
+    Clicking login button...
+    Post-login URL: https://practice.qabrains.com/?email=false&password=false
+✅ Error detected via: [class*='invalid']
+ℹ️  Attempting login with: qa_testers@qabrains.com
+    Current URL: https://practice.qabrains.com/
+    Filled email='qa_testers@qabrains.com' and password
+    Clicking login button...
+    Post-login URL: https://practice.qabrains.com/?logged=true
+✅ Login SUCCESS via: button:has-text('Logout')
+ℹ️  Looking for logout. URL: https://practice.qabrains.com/?logged=true
+✅ Logout button via: button:has-text('Logout')
+Logout check → URL=https://practice.qabrains.com/ | hasLoginBtn=True | noLogout=True
+ℹ️  Using unique email: testuser_1780183007@test.com
+✅ Registration success: Congratulations. You have successfully logged in. When you are done click logout below.
+ℹ️  Using unique email: testuser_1780183015@test.com
+ℹ️  Logging in to access products...
+ℹ️  Attempting login with: qa_testers@qabrains.com
+    Current URL: https://practice.qabrains.com/
+    Filled email='qa_testers@qabrains.com' and password
+    Clicking login button...
+    Post-login URL: https://practice.qabrains.com/?logged=true
+ℹ️  On product page: https://practice.qabrains.com/?logged=true
+✅ Add to Cart button via 'button:has-text('Submit')' index=0: 'submit'
+Product quantity updated
+Verifying updated quantity: expected=0, actual=0
+Invalid item searched
+No search result displayed
+ℹ️  Nav link 'Catalog' not found — navigating directly to: https://practice.qabrains.com/catalog
+✅ Nav link 'About' found via: a:has-text('About Us')
+✅ Nav link 'Blog' found via: a:has-text('Discussion')
+✅ Navigation OK. Final URL: https://practice.qabrains.com/
+ℹ️  Nav link 'Wish List' not found — navigating directly to: https://practice.qabrains.com/wishlist
+ℹ️  Nav link 'Refer a Friend' not found — navigating directly to: https://practice.qabrains.com/refer
+✅ Page opened OK. Final URL: https://practice.qabrains.com/refer
+
+Errored scenarios:
+  features/CartCheckout.feature:10  Add product to cart
+  features/CartCheckout.feature:15  Remove product from cart
+  features/Login.feature:10  Login with valid credentials
+  features/RegressionTests.feature:7  R-01 Add multiple products to cart
+
+4 features passed, 0 failed, 3 error, 0 skipped
+11 scenarios passed, 0 failed, 4 error, 0 skipped
+45 steps passed, 0 failed, 4 error, 5 skipped
+Took 3min 58.859s
